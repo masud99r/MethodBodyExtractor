@@ -81,10 +81,10 @@ public class MainActivity extends Activity {
 
 		mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if( mNfcAdapter == null ){
-        	Toast.makeText(this, "NFCをサポートしていない端末です。", Toast.LENGTH_LONG).show();
+        	Toast.makeText(this, "NFCã‚’ã‚µãƒ�ãƒ¼ãƒˆã�—ã�¦ã�„ã�ªã�„ç«¯æœ«ã�§ã�™ã€‚", Toast.LENGTH_LONG).show();
         	this.finish();
         }else if( !mNfcAdapter.isEnabled() ){
-        	Toast.makeText(this, "NFC設定をONにしてアプリを立ち上げてください。", Toast.LENGTH_LONG).show();
+        	Toast.makeText(this, "NFCè¨­å®šã‚’ONã�«ã�—ã�¦ã‚¢ãƒ—ãƒªã‚’ç«‹ã�¡ä¸Šã�’ã�¦ã��ã� ã�•ã�„ã€‚", Toast.LENGTH_LONG).show();
         	this.finish();
         }
 		
@@ -136,9 +136,9 @@ public class MainActivity extends Activity {
         // Get the local Bluetooth adapter
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        // Bluetoothが無効な場合、有効にする。
+        // Bluetoothã�Œç„¡åŠ¹ã�ªå ´å�ˆã€�æœ‰åŠ¹ã�«ã�™ã‚‹ã€‚
         if( !mBtAdapter.isEnabled() ){
-        	Toast.makeText(this, "Bluetooth設定をONにしてアプリを立ち上げてください", Toast.LENGTH_LONG).show();
+        	Toast.makeText(this, "Bluetoothè¨­å®šã‚’ONã�«ã�—ã�¦ã‚¢ãƒ—ãƒªã‚’ç«‹ã�¡ä¸Šã�’ã�¦ã��ã� ã�•ã�„", Toast.LENGTH_LONG).show();
         	this.finish();
         }
         
@@ -299,7 +299,7 @@ public class MainActivity extends Activity {
             Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             
             
-            // bluetoothDeviceからの情報取得
+            // bluetoothDeviceã�‹ã‚‰ã�®æƒ…å ±å�–å¾—
             byte[] oobOptionalDataLength ={(byte)0x21,(byte)0x00};
             //---Bluetooth Device Address
             String addressStr = mBluetoothDevice.getAddress();
@@ -345,7 +345,7 @@ public class MainActivity extends Activity {
             		EIR_DataLength2.length+EIR_DataType2.length+DeviceClass.length+EIR_DataLength3.length+EIR_DataType3.length+UUID_list.length;
             ByteBuffer byteBuf = ByteBuffer.allocate(oobLen);
             
-            //--OOB全体長再計算
+            //--OOBå…¨ä½“é•·å†�è¨ˆç®—
             byte[] oobLenBytes = toBytes(oobLen);
             oobOptionalDataLength[0] = oobLenBytes[3];
             oobOptionalDataLength[1] = oobLenBytes[2];
