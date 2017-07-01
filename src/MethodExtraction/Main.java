@@ -12,8 +12,8 @@ public class Main {
 		try (BufferedReader br = new BufferedReader(new FileReader("tests/file_list.txt"))) {
 		    String line;
 		    while ((line = br.readLine()) != null) {
-		    	//String infile = line;
-		    	String infile = "tests/MainActivity.java";
+		    	String infile = line;
+		    	//String infile = "tests/MainActivity.java";
 				if(args.length > 0) 
 		           infile = args[0];
 				JavaMethodExtractor methodExtractor = new JavaMethodExtractor(infile);
@@ -21,14 +21,15 @@ public class Main {
 				try {
 					HashMap<String, String> methodBodies = methodExtractor.getMethodBodies(); // methodSignature => methodBody
 					HashMap<String, ArrayList<String>> apiCalls = methodExtractor.getAPICalls(); //methodSignature => ArrayList of API Calls
+					/*
 					for (String key : methodBodies.keySet()) {
 						   System.out.println("------------------------------------------------");
 						   System.out.println("Iterating or looping map using java5 foreach loop");
 						   System.out.println("key: " + key + " value: " + methodBodies.get(key));
 						}
+						*/
 					for (String key : apiCalls.keySet()) {
 						   System.out.println("------------------------------------------------");
-						   System.out.println("Iterating or looping map using java5 foreach loop");
 						   System.out.println("key: " + key + " value: " + apiCalls.get(key));
 						}
 
