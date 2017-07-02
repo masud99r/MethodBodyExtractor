@@ -27,6 +27,7 @@ public class Main {
 	        
 			JavaMethodExtractor methodExtractor = new JavaMethodExtractor(infile);
 			methodExtractor.extract();
+			String extracted_data = "";
 			try {
 				HashMap<String, String> methodBodies = methodExtractor.getMethodBodies(); // methodSignature => methodBody
 				HashMap<String, ArrayList<String>> apiCalls = methodExtractor.getAPICalls(); //methodSignature => ArrayList of API Calls
@@ -61,12 +62,14 @@ public class Main {
 					}
 					String method_name = methodSig.replaceAll("(?:/\\*(?:[^*]|(?:\\*+[^*/]))*\\*+/)|(?://.*)", ""); //remove comment
 					method_name = method_name.replace("@Override", "");
+					method_name = method_name.replace("@ Override", "");
 					method_name = method_name.replaceAll("\\(.*\\)", ""); //remove anything within parenthesis w/ parenthesis
 					method_name = method_count+"_"+method_name.trim();
-							
-					System.out.println(process_text(method_name)+"\t"+process_text(methodSig+" "+methodBodies.get(methodSig))+"\t"+apiList);
+					extracted_data = extracted_data +"\n"+ (process_text(method_name)+"\t"+process_text(methodSig+" "+methodBodies.get(methodSig))+"\t"+process_text(apiList));	
+					//System.out.println(process_text(method_name)+"\t"+process_text(methodSig+" "+methodBodies.get(methodSig))+"\t"+process_text(apiList));
 
 				}
+				System.out.println(extracted_data);
 				
 			} catch (Exception e) {
 				e.printStackTrace();
